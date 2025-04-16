@@ -5,20 +5,19 @@ import Blogs from './pages/Blogs';
 import Photography from './pages/Photography';
 import About from './pages/About';
 import './App.css';
-
+import Footer from './components/Footer';
 function App() {
   return (
     <Router>
-      <div className=" bg-gray-50">
+      <div className="h-screen  bg-white dark:bg-blackboard-black">
         <Navigation />
-        <main>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/photography" element={<Photography />} />
             <Route path="/about" element={<About />} />
           </Routes>
-        </main>
+        <Footer />
       </div>
     </Router>
   );
