@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 function App() {
   return (
     <Router>
-      <div className="h-screen  bg-white dark:bg-blackboard-black">
+      <div className="h-screen max-w-[1600px] relative mx-auto bg-white dark:bg-blackboard-black">
         <Navigation />
           <Routes>
             <Route path="/" element={<Home />} />

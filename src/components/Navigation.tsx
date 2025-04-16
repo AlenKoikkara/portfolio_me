@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 const Navigation: React.FC = () => {
   return (
-    <div className="pl-[70px] gap-[170px] z-10 absolute top-30 flex justify-between items-center text-black dark:text-white">
+    <div className="pl-[70px] gap-[45%] z-10 absolute top-[10%] flex justify-between items-center text-black dark:text-white">
       <div>
         <div>Alen</div>
         <div>Koikkara</div>
