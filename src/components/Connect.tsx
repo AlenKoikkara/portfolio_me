@@ -1,9 +1,25 @@
-import React from 'react'
+import React from "react";
 
 const Connect: React.FC = () => {
   return (
-    <div className='text-black dark:text-white text-center text-sm'>Let's Connect</div>
-  )
-}
+    <div className="absolute pl-[70px] bottom-[10%] flex justify-center items-center gap-4 h-max text-slate text-center text-md">
+      <div>Let's Connect</div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        className="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+        />
+      </svg>
+    </div>
+  );
+};
 
-export default Connect
+export default Connect;

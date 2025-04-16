@@ -6,6 +6,8 @@ import Photography from './pages/Photography';
 import About from './pages/About';
 import './App.css';
 import Footer from './components/Footer';
+import Connect from './components/Connect';
+
 function App() {
   return (
     <Router>
@@ -18,6 +20,7 @@ function App() {
             <Route path="/about" element={<About />} />
           </Routes>
         <Footer />
+        <Connect />
       </div>
     </Router>
   );
