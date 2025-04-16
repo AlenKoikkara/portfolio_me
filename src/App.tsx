@@ -1,11 +1,26 @@
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import Home from './pages/Home';
+import Blogs from './pages/Blogs';
+import Photography from './pages/Photography';
+import About from './pages/About';
+import './App.css';
 
 function App() {
-
   return (
-    <div>
-      <div className="text-3xl font-bold underline">Hello world!</div>
-    </div>
+    <Router>
+      <div className=" bg-gray-50">
+        <Navigation />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/photography" element={<Photography />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
