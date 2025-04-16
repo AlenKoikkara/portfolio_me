@@ -2,7 +2,7 @@ import React from "react";
 
 const Connect: React.FC = () => {
   return (
-    <div className="absolute pl-[70px] bottom-[10%] flex justify-center items-center gap-4 h-max text-slate text-center text-md">
+    <div className="absolute pl-8 md:pl-[70px] md:bottom-[10%] bottom-[15%] flex justify-center items-center gap-4 h-max text-slate text-center text-md">
       <div>Let's Connect</div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
