@@ -17,7 +17,7 @@ const Home: React.FC = () => {
       {/* Web Layout (md and up) */}
       <div className="hidden md:block h-full w-full">
         <WebLayout>
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col h-full overflow-hidden">
             {/* <div className="h-screen">
               <LandingCard />
             </div> */}

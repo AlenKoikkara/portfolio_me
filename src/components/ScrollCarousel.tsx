@@ -1,25 +1,32 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useCarousel } from '../context/CarouselContext';
+import LandingCard from './LandingCard';
+import agletmain from '../assets/agletmain.png';
 
 interface CarouselItem {
   id: number;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   imageUrl?: string;
+  component?: React.ReactNode;
 }
 
 const carouselItems: CarouselItem[] = [
   {
+    id: 0,
+    component: <LandingCard />
+  },
+  {
     id: 1,
     title: "React | Redux | Node.js | MongoDB | AWS Lambda | EC2 | GitHub Actions",
     description: "I build this e-commerce platform to learn more about fullstack. I chose the MERN stack, with Firebase for authentication and simulated stripe payments through their webhooks. Later i set up Github actions for deployement in both frontend and backend. The backend is serverless, deployed on AWS Lambda, and frontend is hosted on EC2.",
-    imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1000&auto=format&fit=crop"
+    imageUrl: agletmain
   },
   {
     id: 2,
-    title: "UI/UX Design",
-    description: "Designing intuitive and beautiful user interfaces that enhance user experience.",
+    title: "Figma | Framer | React",
+    description: "This was a freelance gig, where i built a portfolio website for a UX researcher client.We both contributed to the designs in Figma, iteratively finding satisfaction for the client and then built the portfolio on Framer.",
     imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1000&auto=format&fit=crop"
   },
   {
@@ -119,29 +126,32 @@ const ScrollCarousel: React.FC = () => {
             key={item.id}
             className="w-full h-full flex items-center justify-center snap-start"
           >
-            {/* Full width and height image */}
-            <motion.div 
-              className="w-full h-full overflow-hidden"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              {item.imageUrl && (
-                <img 
-                  src={item.imageUrl} 
-                  alt={item.title} 
-                  className="w-full h-full object-cover"
-                />
-              )}
-            </motion.div>
+            {item.component ? (
+              item.component
+            ) : (
+              <motion.div 
+                className="w-full h-full overflow-hidden"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                {item.imageUrl && (
+                  <img 
+                    src={item.imageUrl} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </motion.div>
+            )}
           </div>
         ))}
       </div>
       
       {/* Navigation dots on the right side */}
       <div className="absolute right-50 top-1/2 transform -translate-y-1/2 flex flex-col gap-3 z-10">
-        {carouselItems.map((_, idx) => (
+        {carouselItems.map((item, idx) => (
           <button
             key={idx}
             onClick={() => scrollToSlide(idx)}
@@ -149,11 +159,12 @@ const ScrollCarousel: React.FC = () => {
             style={{
               color: activeIndex !== idx ? 'var(--color-slate)' : '',
               transform: activeIndex === idx ? 'scale(1.7)' : 'scale(1)',
-              opacity: activeIndex === idx ? 1 : 0.7
+              opacity: activeIndex === idx ? 1 : 0.7,
+              display: item.component ? 'none' : 'flex'
             }}
-            aria-label={`Go to slide ${idx + 1}`}
+            aria-label={`Go to slide ${idx}`}
           >
-            {String(idx + 1).padStart(2, '0')}
+            {String(idx).padStart(2, '0')}
           </button>
         ))}
       </div>
