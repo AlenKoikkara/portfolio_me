@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useCarousel } from '../context/CarouselContext';
 import LandingCard from './LandingCard';
-import agletmain from '../assets/agletmain.png';
+import Aglet from '../projects/Aglet';
 
 interface CarouselItem {
   id: number;
@@ -20,8 +20,8 @@ const carouselItems: CarouselItem[] = [
   {
     id: 1,
     title: "React | Redux | Node.js | MongoDB | AWS Lambda | EC2 | GitHub Actions",
-    description: "I build this e-commerce platform to learn more about fullstack. I chose the MERN stack, with Firebase for authentication and simulated stripe payments through their webhooks. Later i set up Github actions for deployement in both frontend and backend. The backend is serverless, deployed on AWS Lambda, and frontend is hosted on EC2.",
-    imageUrl: agletmain
+    description: "I built this e-commerce platform to learn more about fullstack. I chose the MERN stack, with Firebase for authentication and simulated stripe payments through their webhooks. Later i set up Github actions for deployement in both frontend and backend. The backend is serverless, deployed on AWS Lambda, and frontend is hosted on EC2.",
+    component: <Aglet />
   },
   {
     id: 2,
@@ -160,7 +160,7 @@ const ScrollCarousel: React.FC = () => {
               color: activeIndex !== idx ? 'var(--color-slate)' : '',
               transform: activeIndex === idx ? 'scale(1.7)' : 'scale(1)',
               opacity: activeIndex === idx ? 1 : 0.7,
-              display: item.component ? 'none' : 'flex'
+              display: idx === 0 ? 'none' : 'block',
             }}
             aria-label={`Go to slide ${idx}`}
           >
