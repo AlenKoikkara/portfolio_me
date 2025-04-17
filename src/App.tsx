@@ -6,24 +6,29 @@ import Photography from './pages/Photography';
 import About from './pages/About';
 import './App.css';
 import Footer from './components/Footer';
-import Connect from './components/Connect';
+import BottomBar from './components/BottomBar';
+import { CarouselProvider } from './context/CarouselContext';
 
 function App() {
   return (
     <Router>
-      <div className="h-dvh max-w-[1600px] relative mx-auto bg-white dark:bg-blackboard-black">
-        <Navigation />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/blogs" element={<Blogs />} />
-            <Route path="/photography" element={<Photography />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        <Footer />
-        <Connect />
-      </div>
+      <CarouselProvider>
+        <div className="h-dvh max-w-[1600px] relative mx-auto bg-white dark:bg-blackboard-black">
+          <Navigation />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/photography" element={<Photography />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          <Footer />
+          <BottomBar />
+          {/* <Connect /> */}
+        </div>
+      </CarouselProvider>
     </Router>
   );
 }
 
 export default App;
+// 
