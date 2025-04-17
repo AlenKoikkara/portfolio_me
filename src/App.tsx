@@ -11,7 +11,7 @@ import Connect from './components/Connect';
 function App() {
   return (
     <Router>
-      <div className="h-screen max-w-[1600px] relative mx-auto bg-white dark:bg-blackboard-black">
+      <div className="h-dvh max-w-[1600px] relative mx-auto bg-white dark:bg-blackboard-black">
         <Navigation />
           <Routes>
             <Route path="/" element={<Home />} />
