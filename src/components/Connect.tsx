@@ -11,7 +11,7 @@ const Connect: React.FC = () => {
 
   return (
     <div 
-      className="cursor-pointer absolute pl-4 md:pl-[70px] md:bottom-[10%] bottom-[14%] flex flex-col justify-start items-start h-max text-slate text-center text-md"
+      className="cursor-pointer absolute pl-4 md:pl-[70px] md:bottom-[10%] bottom-[16%] flex flex-col justify-start items-start h-max text-slate text-center text-md"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={handleClick}
