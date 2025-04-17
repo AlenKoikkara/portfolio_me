@@ -17,7 +17,7 @@ const images = [
   }
 ];
 
-const Aglet = () => {
+const Aglet: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 

@@ -153,7 +153,7 @@ const ScrollCarousel: React.FC = () => {
       <div className="absolute right-50 top-1/2 transform -translate-y-1/2 flex flex-col gap-3 z-10">
         {carouselItems.map((item, idx) => (
           <button
-            key={idx}
+            key={item.id}
             onClick={() => scrollToSlide(idx)}
             className={`w-8 h-8 flex items-center justify-center transition-all duration-300 text-sm cursor-pointer dark:text-white text-blackboard-black`}
             style={{
