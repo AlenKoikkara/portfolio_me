@@ -35,7 +35,7 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <div className="w-full md:w-min pl-[70px] pr-4 gap-[20%] z-10 absolute top-[7%] flex justify-between items-start md:items-center text-black dark:text-white">
+    <div className="w-full md:w-min pl-[20px] md:pl-[70px] pr-4 gap-[20%] z-10 absolute top-[90px] flex justify-between items-start md:items-center text-black dark:text-white">
       <div className="text-md md:pr-8">
         <div className="text-slate">Work</div>
         <div className="w-max">by Alen Koikkara</div>
