@@ -8,7 +8,7 @@ const MobileLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   }, [])
 
   return (
-    <div className='pt-[52%] pb-[42%] pr-[100px] h-full relative'>
+    <div className='pt-[45%] pb-[42%] pr-[100px] h-full relative'>
       <div 
         className={`fixed left-0 h-[.5px] w-0 bg-slate transition-all duration-2000 ease-out ${
           isLoaded ? 'w-full' : ''
