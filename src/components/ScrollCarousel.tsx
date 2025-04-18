@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import { useCarousel } from '../context/CarouselContext';
 import LandingCard from './LandingCard';
 import Aglet from '../projects/Aglet';
-
+import Ketto from '../projects/Ketto';
+import AnchalMaria from '../projects/AnchalMaria';
 interface CarouselItem {
   id: number;
   title?: string;
@@ -25,15 +26,15 @@ const carouselItems: CarouselItem[] = [
   },
   {
     id: 2,
-    title: "Figma | Framer | React",
+    title: "React | Angular | Figma | Webflow",
     description: "This was a freelance gig, where i built a portfolio website for a UX researcher client.We both contributed to the designs in Figma, iteratively finding satisfaction for the client and then built the portfolio on Framer.",
-    imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1000&auto=format&fit=crop"
+    component: <Ketto />
   },
   {
     id: 3,
-    title: "Photography",
-    description: "Capturing moments and creating visual stories through the lens.",
-    imageUrl: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop"
+    title: "Figma | Framer | React",
+    description: "This was a freelance gig, where i built a portfolio website for a UX researcher client.We both contributed to the designs in Figma, iteratively finding satisfaction for the client and then built the portfolio on Framer.",
+    component: <AnchalMaria />
   },
   {
     id: 4,

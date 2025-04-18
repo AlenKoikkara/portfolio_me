@@ -5,15 +5,12 @@ import agletmain from '../assets/agletmain.png';
 const images = [
   {
     url: agletmain,
-    description: 'Discover the wonders of natural landscapes'
   },
   {
     url: agletmain,
-    description: 'Experience the vibrant energy of city living'
   },
   {
     url: agletmain,
-    description: 'Exploring the future of technology'
   }
 ];
 
@@ -95,7 +92,7 @@ const Aglet: React.FC = () => {
               paginate(newDirection);
             }}
             className={`w-1 h-1 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'bg-aglet scale-125' : 'bg-white/50'
+              index === currentIndex ? 'bg-aglet scale-125' : 'bg-slate'
             }`}
           />
         ))}
