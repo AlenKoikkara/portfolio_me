@@ -35,6 +35,12 @@ const carouselItems: CarouselItem[] = [
     title: "Figma | Framer | React",
     description: "This was a freelance gig, where i built a portfolio website for a UX researcher client.We both contributed to the designs in Figma, iteratively finding satisfaction for the client and then built the portfolio on Framer.",
     component: <AnchalMaria />
+  },
+  {
+    id: 3,
+    title: "React | Redux | Jest | React Testing Library | Tailwind CSS",
+    description: "This was a freelance gig, where i built a portfolio website for a UX researcher client.We both contributed to the designs in Figma, iteratively finding satisfaction for the client and then built the portfolio on Framer.",
+    component: <AnchalMaria />
   }
 ];
 

@@ -76,7 +76,7 @@ const AnchalMaria: React.FC = () => {
         transition={{ duration: 1.2 }}
       >
         <h2 className="text-3xl text-whitefont-regular mb-2">Portfolio Website</h2>
-        <div className="text-anchalmaria text-sm">for Anchal Maria</div>
+        <div className="text-slate text-sm">for Anchal Maria</div>
       </motion.div>
       
       <AnimatePresence initial={false} custom={direction}>

@@ -93,14 +93,14 @@ const Ketto: React.FC = () => {
           x: { type: "spring", stiffness: 150, damping: 20 },
           opacity: { duration: 1.2 },
         }}
-        className="absolute w-[70%] h-[100%] right-10"
+        className="absolute w-full h-full right-0 flex items-center justify-center"
       >
         <video
           ref={videoRef}
           src={videos[currentIndex].url}
           muted
           playsInline
-          className="w-full object-cover"
+          className="h-[110%] absolute right-0 object-contain"
         />
       </motion.div>
       {/* <div className="absolute bottom-5 left-5 flex space-x-2 z-10">
