@@ -1,14 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import anchalmaria from '../assets/anchalmain.png';
+import anchalmaria from '../assets/webm/anchalmariabento.webm';
 
 const images = [
-  {
-    url: anchalmaria,
-  },
-  {
-    url: anchalmaria,
-  },
   {
     url: anchalmaria,
   }
@@ -17,7 +11,31 @@ const images = [
 const AnchalMaria: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.5 } // Video will play/pause when 50% visible
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.unobserve(video);
+    };
+  }, [currentIndex]);
   useEffect(() => {
     const interval = setInterval(() => {
       setDirection(1);
@@ -44,20 +62,20 @@ const AnchalMaria: React.FC = () => {
     })
   };
 
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection);
-    setCurrentIndex((prevIndex) => (prevIndex + newDirection + images.length) % images.length);
-  };
+  // const paginate = (newDirection: number) => {
+  //   setDirection(newDirection);
+  //   setCurrentIndex((prevIndex) => (prevIndex + newDirection + images.length) % images.length);
+  // };
 
   return (
-    <div className="relative w-[99.9%] h-[99.7%] overflow-hidden bg-blackboard-black dark:bg-white">
+    <div className="relative w-[100%] h-[100%] overflow-hidden bg-blackboard-black border-[.5px] border-slate">
       <motion.div 
         className="absolute top-5 left-5 text-white z-10"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2 }}
       >
-        <h2 className="text-3xl text-white dark:text-blackboard-black font-regular mb-2">Portfolio Website</h2>
+        <h2 className="text-3xl text-whitefont-regular mb-2">Portfolio Website</h2>
         <div className="text-anchalmaria text-sm">for Anchal Maria</div>
       </motion.div>
       
@@ -73,17 +91,19 @@ const AnchalMaria: React.FC = () => {
             x: { type: "spring", stiffness: 150, damping: 20 },
             opacity: { duration: 1.2 }
           }}
-          className="absolute w-[80%] right-0 bottom-0"
+          className="absolute w-full h-full right-0 bottom-0"
         >
-          <img 
-            src={images[currentIndex].url} 
-            alt="Aglet" 
-            className="w-full h-full object-fit"
-          />
+          <video
+          ref={videoRef}
+          src={images[currentIndex].url}
+          muted
+          playsInline
+          className="h-[105%] absolute right-20 object-contain"
+        />
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute bottom-5 left-5 flex space-x-2 z-10">
+      {/* <div className="absolute bottom-5 left-5 flex space-x-2 z-10">
         {images.map((_, index) => (
           <button
             key={index}
@@ -96,7 +116,7 @@ const AnchalMaria: React.FC = () => {
             }`}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

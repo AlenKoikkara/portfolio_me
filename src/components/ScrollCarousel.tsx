@@ -35,12 +35,6 @@ const carouselItems: CarouselItem[] = [
     title: "Figma | Framer | React",
     description: "This was a freelance gig, where i built a portfolio website for a UX researcher client.We both contributed to the designs in Figma, iteratively finding satisfaction for the client and then built the portfolio on Framer.",
     component: <AnchalMaria />
-  },
-  {
-    id: 4,
-    title: "Innovation",
-    description: "Pushing boundaries and exploring new technologies to solve complex problems.",
-    imageUrl: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1000&auto=format&fit=crop"
   }
 ];
 
@@ -128,7 +122,15 @@ const ScrollCarousel: React.FC = () => {
             className="w-full h-full flex items-center justify-center snap-start"
           >
             {item.component ? (
-              item.component
+              <motion.div 
+              className="w-full h-full overflow-hidden"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                {item.component}
+              </motion.div>
             ) : (
               <motion.div 
                 className="w-full h-full overflow-hidden"

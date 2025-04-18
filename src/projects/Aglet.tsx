@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import agletmain from "../assets/agletmain.png";
-import agletphone from "../assets/agletphones.webm";
+import agletmain from "../assets/images/agletmain.png";
+import agletphone from "../assets/webm/agletphones.webm";
 
 const images = [
   {
@@ -77,7 +77,7 @@ const Aglet: React.FC = () => {
   };
 
   return (
-    <div className="relative w-[99.9%] h-[99.7%] overflow-hidden">
+    <div className="relative w-[100%] h-[100%] overflow-hidden bg-blackboard-black border-[.5px] border-slate">
       <motion.div
         className="absolute top-5 left-5 text-white z-10"
         initial={{ opacity: 0, y: -20 }}

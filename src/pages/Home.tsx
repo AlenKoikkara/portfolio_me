@@ -18,9 +18,6 @@ const Home: React.FC = () => {
       <div className="hidden md:block h-full w-full">
         <WebLayout>
           <div className="flex flex-col h-full overflow-hidden">
-            {/* <div className="h-screen">
-              <LandingCard />
-            </div> */}
             <div className="h-screen w-full overflow-hidden">
               <ScrollCarousel />
             </div>

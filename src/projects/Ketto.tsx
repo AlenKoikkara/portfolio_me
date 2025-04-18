@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import kettohand from "../assets/kettoshowreel.webm";
+import kettohand from "../assets/webm/kettoshowreel.webm";
 
 const videos = [
   {
