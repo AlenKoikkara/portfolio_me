@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import kettohand from "../assets/webm/kettoshowreel.webm";
-
+import kettocursor from "../assets/cursor/kettocursor.cur";
 const videos = [
   {
     url: kettohand,
@@ -71,14 +71,22 @@ const Ketto: React.FC = () => {
   // };
 
   return (
-    <div className="relative w-full h-full overflow-hidden cursor-none">
+    <div
+      className="relative w-full h-full overflow-hidden cursor-none"
+      style={{ cursor: `url(${kettocursor}) 4 4, auto` }}
+      onClick={() => {
+        window.open("https://ketto.org/", "_blank");
+      }}
+    >
       <motion.div
         className="absolute top-5 left-5 text-white z-10"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2 }}
       >
-        <h2 className="text-3xl text-blackboard-black dark:text-white font-regular mb-2">Ketto</h2>
+        <h2 className="text-3xl text-blackboard-black dark:text-white font-regular mb-2">
+          Ketto
+        </h2>
         <div className="text-ketto text-sm">Crowdfunding platform</div>
       </motion.div>
 

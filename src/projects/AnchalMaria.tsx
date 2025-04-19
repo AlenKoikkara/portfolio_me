@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import anchalmaria from '../assets/webm/anchalmariabento.webm';
+import defaultcursor from '../assets/cursor/defaultcursor.cur';
 
 const images = [
   {
@@ -68,8 +69,14 @@ const AnchalMaria: React.FC = () => {
   // };
 
   return (
-    <div className="relative w-[100%] h-[100%] overflow-hidden bg-blackboard-black border-[.5px] border-slate">
-      <motion.div 
+    <div
+      className="relative w-[100%] h-[100%] overflow-hidden bg-blackboard-black border-[.5px] border-slate"
+      style={{ cursor: `url(${defaultcursor}) 4 4, auto` }}
+      onClick={() => {
+        window.open("https://anchalmaria.com/", "_blank");
+      }}
+    >
+      <motion.div
         className="absolute top-5 left-5 text-white z-10"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
