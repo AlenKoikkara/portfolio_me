@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import agletmain from "../assets/images/agletmain.png";
 import agletphone from "../assets/webm/agletphones.webm";
+import agletcursor from "../assets/cursor/agletcursor.cur";
 
 const images = [
   {
@@ -33,7 +34,7 @@ const Aglet: React.FC = () => {
           }
         });
       },
-      { threshold: 0.5 } // Video will play/pause when 50% visible
+      { threshold: 0.5 }
     );
 
     observer.observe(video);
@@ -77,7 +78,13 @@ const Aglet: React.FC = () => {
   };
 
   return (
-    <div className="relative w-[100%] h-[100%] overflow-hidden bg-blackboard-black border-[.5px] border-slate">
+    <div 
+      className={`relative w-[100%] h-[100%] overflow-hidden bg-blackboard-black border-[.5px] border-slate`}
+      style={{ cursor: `url(${agletcursor}) 4 4, auto` }}
+      onClick={() => {
+        window.open("https://aglet.alenkoikkara.com/", "_blank");
+      }}
+    >
       <motion.div
         className="absolute top-5 left-5 text-white z-10"
         initial={{ opacity: 0, y: -20 }}
@@ -110,7 +117,7 @@ const Aglet: React.FC = () => {
             />
           ) : (
             <video
-            ref={videoRef}
+              ref={videoRef}
               src={images[currentIndex].url}
               muted
               playsInline

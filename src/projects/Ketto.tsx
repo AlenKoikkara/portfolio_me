@@ -71,7 +71,7 @@ const Ketto: React.FC = () => {
   // };
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className="relative w-full h-full overflow-hidden cursor-none">
       <motion.div
         className="absolute top-5 left-5 text-white z-10"
         initial={{ opacity: 0, y: -20 }}
