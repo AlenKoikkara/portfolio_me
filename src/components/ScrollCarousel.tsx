@@ -5,6 +5,7 @@ import LandingCard from './LandingCard';
 import Aglet from '../projects/Aglet';
 import Ketto from '../projects/Ketto';
 import AnchalMaria from '../projects/AnchalMaria';
+import SplitSense from '../projects/SplitSense';
 interface CarouselItem {
   id: number;
   title?: string;
@@ -37,10 +38,8 @@ const carouselItems: CarouselItem[] = [
     component: <AnchalMaria />
   },
   {
-    id: 3,
-    title: "React | Redux | Jest | React Testing Library | Tailwind CSS",
-    description: "This was a freelance gig, where i built a portfolio website for a UX researcher client.We both contributed to the designs in Figma, iteratively finding satisfaction for the client and then built the portfolio on Framer.",
-    component: <AnchalMaria />
+    id: 4,
+    component: <SplitSense />
   }
 ];
 
