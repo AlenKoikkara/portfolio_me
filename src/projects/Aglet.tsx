@@ -121,7 +121,7 @@ const Aglet: React.FC = () => {
               src={images[currentIndex].url}
               muted
               playsInline
-              className="h-[110%] absolute right-0 object-contain"
+              className="md:h-[110%] absolute right-0 md:object-contain"
             />
           )}
         </motion.div>
