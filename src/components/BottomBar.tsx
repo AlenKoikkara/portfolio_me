@@ -8,16 +8,16 @@ const BottomBar: React.FC = () => {
   const { activeIndex } = useCarousel();
   
   return (
-    <div className="flex justify-start items-start absolute top-[82%]">
-      <div className="text-md md:pr-8">
+    <div className="flex flex-col-reverse md:flex-row justify-start items-start absolute top-[76%] md:top-[82%]">
+      <div className="text-md mt-4 md:pr-8">
         <Connect />
       </div>
       
-      <div className="text-slate flex-1 ml-8">
+      <div className="text-slate flex-1 mx-4 md:ml-8">
         <AnimatePresence mode="wait">
           <motion.div
             key={`title-${activeIndex}`}
-            className="text-[16px] md:text-[20px] text-blackboard-black dark:text-white"
+            className="text-[12px] md:text-[20px] text-blackboard-black dark:text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -30,7 +30,7 @@ const BottomBar: React.FC = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={`desc-${activeIndex}`}
-            className="text-[14px] md:text-[14px] max-w-[800px] text-slate mt-2"
+            className="text-[10px] md:text-[14px] max-w-[800px] text-slate mt-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
