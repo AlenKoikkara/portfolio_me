@@ -79,7 +79,7 @@ const Aglet: React.FC = () => {
 
   return (
     <div 
-      className={`relative w-[100%] h-[100%] overflow-hidden bg-blackboard-black border-[.5px] border-slate`}
+      className={`relative w-[100%] h-[100%] overflow-hidden bg-blackboard-black`}
       style={{ cursor: `url(${agletcursor}) 4 4, auto` }}
       onClick={() => {
         window.open("https://aglet.alenkoikkara.com/", "_blank");
