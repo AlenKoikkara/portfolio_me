@@ -5,12 +5,12 @@ import MobileLayout from "../layout/MobileLayout";
 
 const Home: React.FC = () => {
   return (
-    <div className="md:h-full w-full overflow-hidden">
+    <div className="md:h-full h-[50%] w-full overflow-hidden">
       {/* Mobile Layout (default) */}
-      <div className="md:hidden w-full">
+      <div className="md:hidden h-full w-full">
         <MobileLayout>
           <div className="flex flex-col h-full overflow-hidden">
-            <div className="w-full overflow-hidden">
+            <div className="w-full h-full overflow-hidden">
               <ScrollCarousel />
             </div>
           </div>{" "}
