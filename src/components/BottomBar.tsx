@@ -30,7 +30,7 @@ const BottomBar: React.FC = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={`desc-${activeIndex}`}
-            className="text-[10px] md:text-[14px] max-w-[800px] text-slate md:mt-2 line-clamp-1 md:line-clamp-none"
+            className="text-[10px] md:text-[14px] max-w-[800px] text-slate md:mt-2 line-clamp-3 md:line-clamp-none"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}

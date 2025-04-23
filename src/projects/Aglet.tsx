@@ -95,51 +95,63 @@ const Aglet: React.FC = () => {
         <div className="text-aglet text-sm">Full stack e-commerce platform</div>
       </motion.div>
 
-      <AnimatePresence initial={false} custom={direction}>
-        <motion.div
-          key={currentIndex}
-          custom={direction}
-          variants={slideVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            x: { type: "spring", stiffness: 150, damping: 20 },
-            opacity: { duration: 1.2 },
-          }}
-          className="absolute w-full h-full right-0 flex items-center justify-center"
-        >
-          {images[currentIndex].type === 'image' ? (
-            <img
-              src={images[currentIndex].url}
-              alt="Aglet"
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <video
-              ref={videoRef}
-              src={images[currentIndex].url}
-              muted
-              playsInline
-              className="md:h-[110%] bottom-[-10px] md:bottom-auto absolute right-0 md:object-contain"
-            />
-          )}
-        </motion.div>
-      </AnimatePresence>
+      {/* Mobile - Show only first image */}
+      <div className="md:hidden w-full h-full">
+        <img
+          src={images[0].url}
+          alt="Aglet"
+          className="w-full h-full object-cover"
+        />
+      </div>
 
-      <div className="absolute bottom-5 left-5 flex space-x-2 z-10">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => {
-              const newDirection = index > currentIndex ? 1 : -1;
-              paginate(newDirection);
+      {/* Desktop - Show carousel */}
+      <div className="hidden md:block">
+        <AnimatePresence initial={false} custom={direction}>
+          <motion.div
+            key={currentIndex}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 150, damping: 20 },
+              opacity: { duration: 1.2 },
             }}
-            className={`w-1 h-1 rounded-full transition-all duration-300 ${
-              index === currentIndex ? "bg-aglet scale-125" : "bg-slate"
-            }`}
-          />
-        ))}
+            className="absolute w-full h-full right-0 flex items-center justify-center"
+          >
+            {images[currentIndex].type === 'image' ? (
+              <img
+                src={images[currentIndex].url}
+                alt="Aglet"
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <video
+                ref={videoRef}
+                src={images[currentIndex].url}
+                muted
+                playsInline
+                className="h-[110%] absolute right-0 object-contain"
+              />
+            )}
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="absolute bottom-5 left-5 flex space-x-2 z-10">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                const newDirection = index > currentIndex ? 1 : -1;
+                paginate(newDirection);
+              }}
+              className={`w-1 h-1 rounded-full transition-all duration-300 ${
+                index === currentIndex ? "bg-aglet scale-125" : "bg-slate"
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
