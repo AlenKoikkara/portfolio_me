@@ -11,7 +11,7 @@ const Connect: React.FC = () => {
 
   return (
     <div 
-      className="cursor-pointer pl-4 md:pl-[70px] md:bottom-[10%] flex flex-col justify-center items-start h-max text-slate text-center text-md"
+      className="cursor-pointer pl-4 md:pl-[70px] md:bottom-[10%] flex flex-col justify-center items-start h-max text-slate text-center text-md transition-all duration-300"
       onClick={handleClick}
     >
       <div className="relative flex items-center gap-4">

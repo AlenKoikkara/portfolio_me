@@ -108,7 +108,7 @@ const Ketto: React.FC = () => {
           src={videos[currentIndex].url}
           muted
           playsInline
-          className="h-[110%] absolute right-0 object-contain"
+          className="md:h-[110%] h-[100%] absolute right-0 bottom-0 md:bottom-auto object-cover md:object-contain"
         />
       </motion.div>
       {/* <div className="absolute bottom-5 left-5 flex space-x-2 z-10">

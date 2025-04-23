@@ -9,7 +9,7 @@ const BottomBar: React.FC = () => {
   
   return (
     <div className="mt-2 md:mt-0 flex flex-col-reverse md:flex-row justify-start items-start md:absolute md:top-[82%]">
-      <div className="text-md mt-4 md:pr-8">
+      <div className="text-md mt-2 md:mt-4 md:pr-8">
         <Connect />
       </div>
       

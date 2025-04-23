@@ -105,7 +105,7 @@ const AnchalMaria: React.FC = () => {
           src={images[currentIndex].url}
           muted
           playsInline
-          className="h-[105%] absolute right-20 object-contain"
+          className="h-[80%] md:h-[105%] absolute md:bottom-auto bottom-[-10px] md:right-20 object-contain"
         />
         </motion.div>
       </AnimatePresence>

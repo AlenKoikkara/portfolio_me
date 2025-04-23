@@ -163,7 +163,7 @@ const ScrollCarousel: React.FC = () => {
           <button
             key={item.id}
             onClick={() => scrollToSlide(idx)}
-            className={`w-8 h-8 flex items-center justify-center transition-all duration-300 text-sm cursor-pointer dark:text-white text-blackboard-black`}
+            className={`w-8 h-8 flex items-center justify-center transition-all duration-300 text-xs md:text-sm cursor-pointer dark:text-white text-blackboard-black`}
             style={{
               color: activeIndex !== idx ? 'var(--color-slate)' : '',
               transform: activeIndex === idx ? 'scale(1.7)' : 'scale(1)',
