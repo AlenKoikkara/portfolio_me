@@ -11,14 +11,12 @@ const Connect: React.FC = () => {
 
   return (
     <div 
-      className="cursor-pointer pl-4 md:pl-[70px] md:bottom-[10%] bottom-[16%] flex flex-col justify-center items-start h-max text-slate text-center text-md"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="cursor-pointer pl-4 md:pl-[70px] md:bottom-[10%] flex flex-col justify-center items-start h-max text-slate text-center text-md"
       onClick={handleClick}
     >
       <div className="relative flex items-center gap-4">
         {/* Mobile version - simple text */}
-        <div className="md:hidden">
+        <div className="text-xs md:hidden">
           Let's Connect
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +35,11 @@ const Connect: React.FC = () => {
         </div>
 
         {/* Web version - with animations */}
-        <div className="hidden md:flex items-center gap-4">
+        <div 
+          className="hidden md:flex items-center gap-4"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <motion.div
             className="relative overflow-hidden"
           >
