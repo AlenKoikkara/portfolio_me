@@ -44,6 +44,6 @@ jobs:
         with:
           host: sshpi
           username: charlie
-          key: ~/.ssh/id_rsa
+          key_path: ~/.ssh/id_rsa
           source: "dist/*"
           target: "/docker-data/portfolio"        # on Pi, matches nginx root volume
