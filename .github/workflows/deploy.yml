@@ -13,27 +13,12 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # or your desired Node version
+          node-version: '20'
 
       - name: Install dependencies & build
         run: |
           npm ci
           npm run build
-
-      - name: 🔐 Write SSH Key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-
-      - name: ⚙️ Add SSH Config for Cloudflare Tunnel
-        run: |
-          echo "Host sshpi" >> ~/.ssh/config
-          echo "  HostName sshpi.alenkoikkara.com" >> ~/.ssh/config
-          echo "  User charlie" >> ~/.ssh/config
-          echo "  IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
-          echo "  ProxyCommand cloudflared access tcp --hostname %h" >> ~/.ssh/config
-          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
 
       - name: 📦 Install Cloudflared CLI
         run: |
@@ -44,8 +29,9 @@ jobs:
       - name: 🚀 Upload build to Raspberry Pi over SSH tunnel
         uses: appleboy/scp-action@master
         with:
-          host: sshpi
+          host: sshpi.alenkoikkara.com
           username: charlie
-          key_path: ~/.ssh/id_rsa
+          key: ${{ secrets.SSH_KEY }}
+          proxy_command: "cloudflared access tcp --hostname %h"
           source: "dist/*"
-          target: "/docker-data/portfolio"        # on Pi, matches nginx root volume
+          target: "/docker-data/portfolio"
