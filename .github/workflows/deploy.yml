@@ -31,7 +31,7 @@ jobs:
         with:
           host: sshpi.alenkoikkara.com
           username: charlie
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_KEY }}
           proxy_command: "cloudflared access tcp --hostname %h"
           source: "dist/*"
           target: "/docker-data/portfolio" # adjust to your actual folder path         # on Pi, matches nginx root volume
