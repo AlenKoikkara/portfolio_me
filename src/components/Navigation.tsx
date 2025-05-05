@@ -42,7 +42,7 @@ const Navigation: React.FC = () => {
       </div>
       <div className="flex flex-col md:flex-row gap-6 md:gap-[20%] text-right md:text-center text-xs md:text-md text-slate">
         <NavItem to="/">[Home]</NavItem>
-        <NavItem to="/blogs">Blogs</NavItem>
+        {/* <NavItem to="/blogs">Blogs</NavItem> */}
         <NavItem to="/photography">Photography</NavItem>
         <NavItem to="/about">About</NavItem>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import ScrollCarousel from "../components/ScrollCarousel";
-import WebLayout from "../layout/WebLayout";
-import MobileLayout from "../layout/MobileLayout";
+import WebLayout from "../layout/homelayout/WebLayout";
+import MobileLayout from "../layout/homelayout/MobileLayout";
 
 const Home: React.FC = () => {
   return (
