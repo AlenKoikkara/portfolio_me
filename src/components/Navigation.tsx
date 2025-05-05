@@ -38,7 +38,7 @@ const Navigation: React.FC = () => {
     <div className="w-full md:w-min pt-5 pl-[20px] md:pl-[70px] pr-4 gap-[20%] z-10 md:absolute md:top-[80px] flex justify-between items-start md:items-center text-black dark:text-white">
       <div className="text-sm md:text-md md:pr-8">
         <div className="text-slate">Work</div>
-        <div className="w-max">by Alen Koikkara etc</div>
+        <div className="w-max">by Alen Koikkara</div>
       </div>
       <div className="flex flex-col md:flex-row gap-6 md:gap-[20%] text-right md:text-center text-xs md:text-md text-slate">
         <NavItem to="/">[Home]</NavItem>
