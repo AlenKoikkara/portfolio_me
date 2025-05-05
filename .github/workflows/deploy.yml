@@ -1,13 +1,15 @@
 name: Deploy Portfolio
+
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Setup Node
@@ -15,22 +17,23 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies & build
+      - name: Build Project
         run: |
           npm ci
           npm run build
 
-      - name: 📦 Install Cloudflared CLI
+      - name: Install cloudflared
         run: |
           curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o cloudflared
           chmod +x cloudflared
           sudo mv cloudflared /usr/local/bin/
 
-      - name: 🔐 Write SSH Key
+      - name: Setup SSH Key and Config
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+
           cat <<EOF > ~/.ssh/config
           Host sshpi
             HostName sshpi.alenkoikkara.com
@@ -39,14 +42,7 @@ jobs:
             ProxyCommand cloudflared access tcp --hostname %h
             StrictHostKeyChecking no
           EOF
-          
-      - name: 🚀 Upload build to Raspberry Pi
-        uses: appleboy/scp-action@master
-        with:
-          host: sshpi
-          username: charlie
-          key_path: ~/.ssh/id_rsa
-          source: "dist/*"
-          target: "/docker-data/portfolio"
 
-
+      - name: Upload build via SCP manually
+        run: |
+          scp -r dist/* sshpi:/docker-data/portfolio
