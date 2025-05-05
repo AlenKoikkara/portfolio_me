@@ -38,7 +38,8 @@ jobs:
             IdentityFile ~/.ssh/id_rsa
             ProxyCommand cloudflared access tcp --hostname %h
             StrictHostKeyChecking no
-
+          EOF
+          
       - name: 🚀 Upload build to Raspberry Pi
         uses: appleboy/scp-action@master
         with:
