@@ -16,7 +16,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Vite. F
 - 🐳 Docker support for easy deployment
 - 🔄 Automated CI/CD with GitHub Actions
 - 🚀 Coolify deployment on Raspberry Pi 5
-- 📦 GitHub Release Management
+- 📦 GitHub Release Managements
 
 ## Tech Stack
 
