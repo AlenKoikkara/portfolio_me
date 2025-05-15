@@ -17,13 +17,14 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Run lint
-        run: |
-          npm run lint
+      - name: Install dependencies
+        run: npm i
+
+      - name: Lint
+        run: npm run lint
 
       - name: Build Project
         run: |
-          npm ci
           npm run build
 
       - name: Install cloudflared
