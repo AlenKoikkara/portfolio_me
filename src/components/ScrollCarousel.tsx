@@ -6,6 +6,7 @@ import Aglet from '../projects/Aglet';
 import Ketto from '../projects/Ketto';
 import AnchalMaria from '../projects/AnchalMaria';
 import SplitSense from '../projects/SplitSense';
+import Memento from '../projects/Memento';
 interface CarouselItem {
   id: number;
   title?: string;
@@ -39,6 +40,18 @@ const carouselItems: CarouselItem[] = [
   },
   {
     id: 4,
+    title: "Figma | Framer | React",
+    description: "This was a freelance gig, where i built a portfolio website for a UX researcher client.We both contributed to the designs in Figma, iteratively finding satisfaction for the client and then built the portfolio on Framer.",
+    component: <AnchalMaria />
+  },
+  {
+    id: 5,
+    title: "Python | React | ChromaDB | FastApi | MongoDB | Github Actions | Docker",
+    description: "This was a freelance gig, where i built a portfolio website for a UX researcher client.We both contributed to the designs in Figma, iteratively finding satisfaction for the client and then built the portfolio on Framer.",
+    component: <Memento />
+  },
+  {
+    id: 6,
     component: <SplitSense />
   }
 ];
