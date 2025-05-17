@@ -8,7 +8,7 @@ const videos = [
   },
 ];
 
-const SplitSense: React.FC = () => {
+const Memento: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   // const [direction, setDirection] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -141,4 +141,4 @@ const SplitSense: React.FC = () => {
   );
 };
 
-export default SplitSense;
+export default Memento;
