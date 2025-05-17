@@ -1,9 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useCarousel } from "../context/CarouselContext";
-import agletmain from "../assets/images/agletmain.png";
-import anchalmain from "../assets/images/anchalmain.png";
-import kettohand from "../assets/images/kettohand.png";
+
+import img1 from "../assets/photography/img1.png"
+import img2 from "../assets/photography/img2.png"
+import img3 from "../assets/photography/img3.png"
+import img4 from "../assets/photography/img4.png"
+import img5 from "../assets/photography/img5.png"
+import img6 from "../assets/photography/img6.png"
+import img7 from "../assets/photography/img7.png"
 
 interface CarouselItem {
   id: number;
@@ -16,29 +21,40 @@ interface CarouselItem {
 const carouselItems: CarouselItem[] = [
   {
     id: 0,
-    imageUrl: agletmain,
+    imageUrl: img1,
     title: "Photo 1",
   },
   {
     id: 1,
-    imageUrl: anchalmain,
+    imageUrl: img2,
     title: "Photo 2",
   },
   {
     id: 2,
-    imageUrl: kettohand,
+    imageUrl: img3,
     title: "Photo 3",
   },
   {
     id: 3,
-    imageUrl: anchalmain,
+    imageUrl: img4,
     title: "Photo 4",
   },
   {
     id: 4,
-    imageUrl: agletmain,
+    imageUrl: img5,
     title: "Photo 5",
   },
+  {
+    id: 5,
+    imageUrl: img6,
+    title: "Photo 6",
+  },
+  {
+    id: 6,
+    imageUrl: img7,
+    title: "Photo 7",
+  },
+
 ];
 
 const PhotographyCarousel: React.FC = () => {
@@ -60,10 +76,9 @@ const PhotographyCarousel: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Set initial active index to middle item
+  // Set initial active index to first item
   React.useEffect(() => {
-    const middleIndex = Math.floor(carouselItems.length / 2);
-    setActiveIndex(middleIndex);
+    setActiveIndex(0);
   }, [setActiveIndex]);
 
   // Animate x position based on activeIndex
@@ -97,19 +112,29 @@ const PhotographyCarousel: React.FC = () => {
 
   // Handle wheel events from anywhere on the page
   useEffect(() => {
+    let accumulatedScroll = 0;
+    const SCROLL_THRESHOLD = 100; // Need to scroll this much to trigger a slide change
+    
     const handleWheel = (e: WheelEvent) => {
       if (containerRef.current) {
         e.preventDefault();
-        const direction = e.deltaY > 0 ? 1 : -1;
-        const newIndex = activeIndex + direction;
-        if (newIndex >= 0 && newIndex < carouselItems.length) {
-          setActiveIndex(newIndex);
+        accumulatedScroll += e.deltaY;
+        
+        if (Math.abs(accumulatedScroll) >= SCROLL_THRESHOLD) {
+          const direction = accumulatedScroll > 0 ? 1 : -1;
+          const newIndex = activeIndex + direction;
+          
+          if (newIndex >= 0 && newIndex < carouselItems.length) {
+            setActiveIndex(newIndex);
+          }
+          accumulatedScroll = 0; // Reset after slide change
         }
       }
     };
-    window.addEventListener("wheel", handleWheel, { passive: false });
+    
+    window.addEventListener('wheel', handleWheel, { passive: false });
     return () => {
-      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener('wheel', handleWheel);
     };
   }, [activeIndex, setActiveIndex]);
 
@@ -177,6 +202,7 @@ const PhotographyCarousel: React.FC = () => {
                         src={item.imageUrl}
                         alt={item.title}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                     )}
                   </motion.div>

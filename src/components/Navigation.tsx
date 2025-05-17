@@ -17,15 +17,15 @@ const Navigation: React.FC = () => {
               <motion.span
                 className={`relative z-10 ${isActive ? "text-blackboard-black dark:text-white" : "text-slate"}`}
               >
-                {children}
+                {isActive ? `[${children}]` : children}
               </motion.span>
               <motion.span
-                className={`absolute inset-0 z-20 ${isActive ? "text-blackboard-black dark:text-white" : "text-white"}`}
+                className={`absolute inset-0 z-20 hidden md:block ${isActive ? "text-blackboard-black dark:text-white" : "text-white"}`}
                 initial={{ clipPath: "inset(0 100% 0 0)" }}
                 animate={{ clipPath: hoveredItem === to ? "inset(0 0 0 0)" : "inset(0 100% 0 0)" }}
                 transition={{ duration: 0.6 }}
               >
-                {children}
+                {isActive ? `[${children}]` : children}
               </motion.span>
             </motion.div>
           )}
@@ -41,7 +41,7 @@ const Navigation: React.FC = () => {
         <div className="w-max">by Alen Koikkara</div>
       </div>
       <div className="flex flex-col md:flex-row gap-6 md:gap-[20%] text-right md:text-center text-xs md:text-md text-slate">
-        <NavItem to="/">[Home]</NavItem>
+        <NavItem to="/">Home</NavItem>
         {/* <NavItem to="/blogs">Blogs</NavItem> */}
         <NavItem to="/photography">Photography</NavItem>
         <NavItem to="/about">About</NavItem>
