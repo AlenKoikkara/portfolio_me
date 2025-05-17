@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useCarousel } from "../context/CarouselContext";
 
 import img1 from "../assets/photography/img1.png"
@@ -16,6 +16,7 @@ interface CarouselItem {
   description?: string;
   imageUrl?: string;
   component?: React.ReactNode;
+  date?: string;
 }
 
 const carouselItems: CarouselItem[] = [
@@ -23,43 +24,50 @@ const carouselItems: CarouselItem[] = [
     id: 0,
     imageUrl: img1,
     title: "Photo 1",
+    date: "2024"
   },
   {
     id: 1,
     imageUrl: img2,
     title: "Photo 2",
+    date: "2024"
   },
   {
     id: 2,
     imageUrl: img3,
     title: "Photo 3",
+    date: "2024"
   },
   {
     id: 3,
     imageUrl: img4,
     title: "Photo 4",
+    date: "2024"
   },
   {
     id: 4,
     imageUrl: img5,
     title: "Photo 5",
+    date: "2024"
   },
   {
     id: 5,
     imageUrl: img6,
     title: "Photo 6",
+    date: "2024"
   },
   {
     id: 6,
     imageUrl: img7,
     title: "Photo 7",
+    date: "2024"
   },
-
 ];
 
 const PhotographyCarousel: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { activeIndex, setActiveIndex } = useCarousel();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Calculate width for each slide
   const [containerWidth, setContainerWidth] = React.useState(0);
@@ -189,13 +197,14 @@ const PhotographyCarousel: React.FC = () => {
                   </motion.div>
                 ) : (
                   <motion.div
-                    className="w-full h-full overflow-hidden"
+                    className="w-full h-full overflow-hidden cursor-pointer"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{
                       opacity: index === activeIndex ? 1 : 0.7,
                       scale: index === activeIndex ? 1 : 0.9,
                     }}
                     transition={{ duration: 0.5 }}
+                    onClick={() => setIsModalOpen(true)}
                   >
                     {item.imageUrl && (
                       <img
@@ -211,6 +220,54 @@ const PhotographyCarousel: React.FC = () => {
             ))}
           </motion.div>
         </div>
+      </div>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative w-[90vw] h-[90vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={carouselItems[activeIndex].imageUrl}
+                alt={carouselItems[activeIndex].title}
+                className="w-full h-full object-contain"
+              />
+              <button
+                className="absolute top-0 right-4 text-white text-2xl hover:text-gray-300 cursor-pointer"
+                onClick={() => setIsModalOpen(false)}
+              >
+                ×
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Title and Date Display */}
+      <div className="absolute bottom-0 left-0 py-8 text-white">
+        <motion.div
+          key={activeIndex}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -40 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-xl font-regular">{carouselItems[activeIndex].title}</h2>
+          <p className="text-slate text-sm">{carouselItems[activeIndex].date}</p>
+        </motion.div>
       </div>
 
       {/* Scale Carousel */}
