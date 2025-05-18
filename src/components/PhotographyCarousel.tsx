@@ -2,13 +2,22 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCarousel } from "../context/CarouselContext";
 
-import img1 from "../assets/photography/img1.png"
-import img2 from "../assets/photography/img2.png"
-import img3 from "../assets/photography/img3.png"
-import img4 from "../assets/photography/img4.png"
-import img5 from "../assets/photography/img5.png"
-import img6 from "../assets/photography/img6.png"
-import img7 from "../assets/photography/img7.png"
+import img1 from "../assets/photography/img1.webp"
+import img2 from "../assets/photography/img2.webp"
+import img3 from "../assets/photography/img3.webp"
+import img4 from "../assets/photography/img4.webp"
+import img5 from "../assets/photography/img5.webp"
+import img6 from "../assets/photography/img6.webp"
+import img7 from "../assets/photography/img7.webp"
+import img8 from "../assets/photography/img8.webp"
+import img9 from "../assets/photography/img9.webp"
+import img10 from "../assets/photography/img10.webp"
+import img11 from "../assets/photography/img11.webp"
+import img12 from "../assets/photography/img12.webp"
+import img13 from "../assets/photography/img13.webp"
+import img14 from "../assets/photography/img14.webp"
+import img15 from "../assets/photography/img15.webp"
+
 
 interface CarouselItem {
   id: number;
@@ -23,7 +32,7 @@ const carouselItems: CarouselItem[] = [
   {
     id: 0,
     imageUrl: img1,
-    title: "Photo 1",
+    title: "The 1000th Day",
     date: "2024"
   },
   {
@@ -35,33 +44,81 @@ const carouselItems: CarouselItem[] = [
   {
     id: 2,
     imageUrl: img3,
-    title: "Photo 3",
+    title: "Ashland Intersection",
     date: "2024"
   },
   {
     id: 3,
     imageUrl: img4,
-    title: "Photo 4",
+    title: "Symmetry",
     date: "2024"
   },
   {
     id: 4,
     imageUrl: img5,
-    title: "Photo 5",
+    title: "Astigmatic Eyes",
     date: "2024"
   },
   {
     id: 5,
     imageUrl: img6,
-    title: "Photo 6",
+    title: "Karwan",
     date: "2024"
   },
   {
     id: 6,
     imageUrl: img7,
-    title: "Photo 7",
+    title: "City of Dreams",
     date: "2024"
   },
+  {
+    id: 7,
+    imageUrl: img8,
+    title: "Damen | Madison",
+    date: "2024"
+  },
+  {
+    id: 8,
+    imageUrl: img9,
+    title: "Christmas",
+    date: "2024"
+  },
+  {
+    id: 9,
+    imageUrl: img10,
+    title: "Photo 10",
+    date: "2024"
+  },
+  {
+    id: 10,
+    imageUrl: img11,
+    title: "Undisclosed Location",
+    date: "2024"
+  },
+  {
+    id: 11,
+    imageUrl: img12,
+    title: "Shy",
+    date: "2024"
+  },
+  { 
+    id: 12,
+    imageUrl: img13,
+    title: "Bridges & Tunnels",
+    date: "2024"
+  },
+  {
+    id: 13,
+    imageUrl: img14,
+    title: "Lego City",
+    date: "2024"
+  },
+  {
+    id: 14,
+    imageUrl: img15,
+    title: "Goodbyes & Goodnights",
+    date: "2024"
+  }
 ];
 
 const PhotographyCarousel: React.FC = () => {
@@ -211,7 +268,6 @@ const PhotographyCarousel: React.FC = () => {
                         src={item.imageUrl}
                         alt={item.title}
                         className="w-full h-full object-cover"
-                        loading="lazy"
                       />
                     )}
                   </motion.div>
@@ -244,6 +300,7 @@ const PhotographyCarousel: React.FC = () => {
                 src={carouselItems[activeIndex].imageUrl}
                 alt={carouselItems[activeIndex].title}
                 className="w-full h-full object-contain"
+                loading="lazy"
               />
               <button
                 className="absolute top-0 right-4 text-white text-2xl hover:text-gray-300 cursor-pointer"
