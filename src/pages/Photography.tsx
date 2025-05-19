@@ -19,8 +19,8 @@ const Photography: React.FC = () => {
     {/* Web Layout (md and up) */}
     <div className="hidden md:block h-full w-full">
       <WebLayout>
-        <div className="flex flex-col h-full overflow-hidden">
-          <div className="h-screen w-full overflow-hidden text-white">
+        <div className="flex flex-col h-full overflow-visible">
+          <div className="h-screen w-full overflow-visible text-white">
             <PhotographyCarousel />
           </div>
         </div>

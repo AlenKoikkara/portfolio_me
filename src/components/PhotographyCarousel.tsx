@@ -26,6 +26,9 @@ interface CarouselItem {
   imageUrl?: string;
   component?: React.ReactNode;
   date?: string;
+  location?: string;
+  focalLength?: string;
+  fNumber?: string;
 }
 
 const carouselItems: CarouselItem[] = [
@@ -33,91 +36,135 @@ const carouselItems: CarouselItem[] = [
     id: 0,
     imageUrl: img1,
     title: "The 1000th Day",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "Adler Planetarium, Chicago",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   },
   {
     id: 1,
     imageUrl: img2,
     title: "Photo 2",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "New York, NY",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   },
   {
     id: 2,
     imageUrl: img3,
     title: "Ashland Intersection",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "Madison & Ashland, Chicago",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   },
   {
     id: 3,
     imageUrl: img4,
     title: "Symmetry",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "New York, NY",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   },
   {
     id: 4,
     imageUrl: img5,
     title: "Astigmatic Eyes",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "New York, NY",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   },
   {
     id: 5,
     imageUrl: img6,
     title: "Karwan",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "Mahabaleshwar, Maharashtra",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   },
   {
     id: 6,
     imageUrl: img7,
     title: "City of Dreams",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "Worli Ceiling, Mumbai",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   },
   {
     id: 7,
     imageUrl: img8,
     title: "Damen | Madison",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "Damen & Madison, Chicago",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   },
   {
     id: 8,
     imageUrl: img9,
     title: "Christmas",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "New York, NY",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   },
   {
     id: 9,
     imageUrl: img10,
     title: "Photo 10",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "New York, NY",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   },
   {
     id: 10,
     imageUrl: img11,
     title: "Undisclosed Location",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "New York, NY",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   },
   {
     id: 11,
     imageUrl: img12,
     title: "Shy",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "New York, NY",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   },
   { 
     id: 12,
     imageUrl: img13,
     title: "Bridges & Tunnels",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "New York, NY",
+    focalLength: "100mm"
   },
   {
     id: 13,
     imageUrl: img14,
     title: "Lego City",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "New York, NY",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   },
   {
     id: 14,
     imageUrl: img15,
     title: "Goodbyes & Goodnights",
-    date: "2024"
+    date: "Saturday, May 17, 2025 at 7:58 PM",
+    location: "Damen Greenline, Chicago",
+    focalLength: "100mm",
+    fNumber: "f/1.4"
   }
 ];
 
@@ -151,7 +198,7 @@ const PhotographyCarousel: React.FC = () => {
 
   // Drag end handler for gallery
   const handleDragEnd = (_: unknown, info: { offset: { x: number } }) => {
-    const threshold = containerWidth / 4; // 25% of width to trigger a slide change
+    const threshold = containerWidth / 4;
     if (info.offset.x < -threshold && activeIndex < carouselItems.length - 1) {
       setActiveIndex(activeIndex + 1);
     } else if (info.offset.x > threshold && activeIndex > 0) {
@@ -159,40 +206,31 @@ const PhotographyCarousel: React.FC = () => {
     }
   };
 
-  // Handle scroll events within the container
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    const handleScroll = () => {
-      const scrollPosition = container.scrollLeft;
-      const itemWidth = container.clientWidth;
-      const newIndex = Math.round(scrollPosition / itemWidth);
-      if (newIndex >= 0 && newIndex < carouselItems.length) {
-        setActiveIndex(newIndex);
-      }
-    };
-    container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, [setActiveIndex]);
-
   // Handle wheel events from anywhere on the page
   useEffect(() => {
     let accumulatedScroll = 0;
-    const SCROLL_THRESHOLD = 100; // Need to scroll this much to trigger a slide change
+    const SCROLL_THRESHOLD = 100;
+    let isScrolling = false;
     
     const handleWheel = (e: WheelEvent) => {
-      if (containerRef.current) {
+      if (containerRef.current && !isScrolling) {
         e.preventDefault();
         accumulatedScroll += e.deltaY;
         
         if (Math.abs(accumulatedScroll) >= SCROLL_THRESHOLD) {
+          isScrolling = true;
           const direction = accumulatedScroll > 0 ? 1 : -1;
           const newIndex = activeIndex + direction;
           
           if (newIndex >= 0 && newIndex < carouselItems.length) {
             setActiveIndex(newIndex);
           }
-          accumulatedScroll = 0; // Reset after slide change
+          accumulatedScroll = 0;
+          
+          // Reset scrolling flag after animation
+          setTimeout(() => {
+            isScrolling = false;
+          }, 300);
         }
       }
     };
@@ -206,14 +244,17 @@ const PhotographyCarousel: React.FC = () => {
   return (
     <div className="w-full h-full flex flex-col">
       {/* Image Carousel */}
-      <div className="flex-1 w-full relative overflow-hidden">
+      <div className="flex-1 w-full relative overflow-visible">
         <div
           ref={containerRef}
-          className="w-full h-full relative overflow-hidden"
+          className="w-full h-full relative overflow-visible"
         >
           <motion.div
-            className="absolute top-0 left-0 h-full flex"
-            style={{ width: `${carouselItems.length * 100}%` }}
+            className="absolute top-0 left-0 h-full flex will-change-transform"
+            style={{ 
+              width: `${carouselItems.length * 100}%`,
+              transform: `translate3d(${x}px, 0, 0)`,
+            }}
             drag="x"
             dragConstraints={{
               left: -(carouselItems.length - 1) * containerWidth,
@@ -243,32 +284,44 @@ const PhotographyCarousel: React.FC = () => {
                 {item.component ? (
                   <motion.div
                     className="w-full h-full overflow-hidden"
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0 }}
                     animate={{
                       opacity: index === activeIndex ? 1 : 0.7,
-                      scale: index === activeIndex ? 1 : 0.9,
                     }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.3 }}
                   >
                     {item.component}
                   </motion.div>
                 ) : (
                   <motion.div
-                    className="w-full h-full overflow-hidden cursor-pointer"
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    className={`w-full h-full overflow-hidden cursor-pointer`}
+                    initial={{ opacity: 0 }}
                     animate={{
-                      opacity: index === activeIndex ? 1 : 0.7,
-                      scale: index === activeIndex ? 1 : 0.9,
+                      opacity: index === activeIndex ? 1 : 0.5,
+                      scale: index === activeIndex ? 1 : 0.95,
+                      filter: index === activeIndex ? 'none' : 'blur(1px)',
                     }}
-                    transition={{ duration: 0.5 }}
-                    onClick={() => setIsModalOpen(true)}
+                    transition={{ duration: 0.3 }}
                   >
                     {item.imageUrl && (
-                      <img
-                        src={item.imageUrl}
-                        alt={item.title}
-                        className="w-full h-full object-cover"
-                      />
+                      <div className="relative w-full h-full bg-gray-900">
+                        <img
+                          key={item.imageUrl}
+                          src={item.imageUrl}
+                          alt={item.title}
+                          className="w-full h-full object-cover"
+                          loading={index < 3 ? "eager" : "lazy"}
+                          decoding="async"
+                          style={{ display: 'block' }}
+                          onClick={() => {
+                            if (index === activeIndex) {
+                              setIsModalOpen(true);
+                            } else if (Math.abs(index - activeIndex) === 1) {
+                              setActiveIndex(index);
+                            }
+                          }}
+                        />
+                      </div>
                     )}
                   </motion.div>
                 )}
@@ -292,7 +345,7 @@ const PhotographyCarousel: React.FC = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
               className="relative w-[90vw] h-[90vh]"
               onClick={(e) => e.stopPropagation()}
             >
@@ -301,6 +354,8 @@ const PhotographyCarousel: React.FC = () => {
                 alt={carouselItems[activeIndex].title}
                 className="w-full h-full object-contain"
                 loading="lazy"
+                decoding="async"
+                style={{ transform: 'translateZ(0)' }}
               />
               <button
                 className="absolute top-0 right-4 text-white text-2xl hover:text-gray-300 cursor-pointer"
@@ -314,24 +369,29 @@ const PhotographyCarousel: React.FC = () => {
       </AnimatePresence>
 
       {/* Title and Date Display */}
-      <div className="absolute bottom-0 left-0 py-8 text-white">
+      <div className="absolute bottom-0 left-10 py-8 text-white">
         <motion.div
           key={activeIndex}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -40 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.3 }}
         >
-          <h2 className="text-xl font-regular">{carouselItems[activeIndex].title}</h2>
+          <h2 className="text-lg font-regular">{carouselItems[activeIndex].title}</h2>
           <p className="text-slate text-sm">{carouselItems[activeIndex].date}</p>
+          <p className="text-slate text-xs mt-1">{carouselItems[activeIndex].location}</p>
+          <div className="flex items-center gap-2">
+            <p className="text-slate text-xs">{carouselItems[activeIndex].focalLength}</p>
+            <p className="text-slate text-xs">{carouselItems[activeIndex].fNumber}</p>
+          </div>
         </motion.div>
       </div>
 
       {/* Scale Carousel */}
-      <div className="absolute px-[450px] bottom-0 left-0 w-full h-32 flex items-center justify-center">
+      <div className="absolute px-[20%] bottom-0 left-0 w-full h-32 flex items-center justify-center">
         <div className="relative w-48 h-12 flex items-center justify-center">
           <motion.div
-            className="absolute flex items-center justify-center"
+            className="absolute flex items-center justify-center will-change-transform"
             animate={{ x: -activeIndex * 160 }}
             transition={{
               type: "spring",
