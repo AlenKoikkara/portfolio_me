@@ -267,7 +267,7 @@ const PhotographyCarousel: React.FC = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6"
+              className="size-6 text-black dark:text-white"
             >
               <path
                 strokeLinecap="round"
@@ -284,7 +284,7 @@ const PhotographyCarousel: React.FC = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6"
+              className="size-6 text-black dark:text-white"
             >
               <path
                 strokeLinecap="round"
@@ -446,7 +446,7 @@ const PhotographyCarousel: React.FC = () => {
             </AnimatePresence>
 
             {/* Title and Date Display */}
-            <div className="absolute bottom-0 left-10 py-8 text-white">
+            <div className="absolute bottom-0 left-4 md:left-10 py-8 text-white">
               <motion.div
                 key={activeIndex}
                 initial={{ opacity: 0, x: 40 }}
@@ -454,7 +454,7 @@ const PhotographyCarousel: React.FC = () => {
                 exit={{ opacity: 0, x: -40 }}
                 transition={{ duration: 0.3 }}
               >
-                <h2 className="text-lg font-regular">
+                <h2 className="text-lg font-regular text-blackboard-black dark:text-white">
                   {carouselItems[activeIndex].title}
                 </h2>
                 <p className="text-slate text-sm">
@@ -475,7 +475,7 @@ const PhotographyCarousel: React.FC = () => {
             </div>
 
             {/* Scale Carousel */}
-            <div className="absolute px-[20%] bottom-0 left-0 w-full h-32 flex items-center justify-center">
+            <div className="absolute hidden md:flex px-[20%] bottom-0 left-0 w-full h-32 items-center justify-center">
               <div className="relative w-48 h-12 flex items-center justify-center">
                 <motion.div
                   className="absolute flex items-center justify-center will-change-transform"

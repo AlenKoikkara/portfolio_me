@@ -10,9 +10,11 @@ const Connect: React.FC = () => {
   };
 
   return (
-    <div 
+    <div
       className="cursor-pointer pl-4 md:pl-[70px] md:bottom-[10%] flex flex-col justify-center items-start h-max text-slate text-center text-md transition-all duration-300"
       onClick={handleClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative flex items-center gap-4">
         {/* Mobile version - simple text */}
@@ -35,23 +37,17 @@ const Connect: React.FC = () => {
         </div>
 
         {/* Web version - with animations */}
-        <div 
-          className="hidden md:flex items-center gap-4"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <motion.div
-            className="relative overflow-hidden"
-          >
-            <motion.span
-              className="relative z-10 text-slate"
-            >
+        <div className="hidden md:flex items-center gap-4">
+          <motion.div className="relative overflow-hidden">
+            <motion.span className="relative z-10 text-slate">
               Let's Connect
             </motion.span>
             <motion.span
               className="absolute inset-0 z-20 text-white"
               initial={{ clipPath: "inset(0 100% 0 0)" }}
-              animate={{ clipPath: isHovered ? "inset(0 0 0 0)" : "inset(0 100% 0 0)" }}
+              animate={{
+                clipPath: isHovered ? "inset(0 0 0 0)" : "inset(0 100% 0 0)",
+              }}
               transition={{ duration: 0.5 }}
             >
               Let's Connect
@@ -75,7 +71,7 @@ const Connect: React.FC = () => {
           </motion.svg>
         </div>
       </div>
-      
+
       {/* Email - only visible on web */}
       <div className="hidden md:block">
         <AnimatePresence>

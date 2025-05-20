@@ -34,14 +34,14 @@ const PhotographyTable: React.FC = () => {
                 </div>
               </td> */}
               <td>
-                <p className="text-slate text-xs">{item.date}</p>
+                <p className="text-slate text-[10px] md:text-xs">{item.date}</p>
               </td>
               <td className="py-4 px-2">
-                <h3 className="text-white text-sm text-center">
+                <h3 className="text-white text-xs md:text-sm text-center">
                   {item.title?.toUpperCase()}
                 </h3>
               </td>
-              <td className="py-4 px-2 text-slate text-sm text-end">
+              <td className="py-4 px-2 text-slate text-[10px] md:text-sm text-end">
                 {item.location}
               </td>
             </tr>
@@ -57,7 +57,7 @@ const PhotographyTable: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed z-50 top-1/2 right-1 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] rounded-lg overflow-hidden shadow-lg z-10 pointer-events-none"
+            className="fixed z-50 top-1/2 right-1 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] rounded-lg overflow-hidden shadow-lg z-10 pointer-events-none hidden md:block"
           >
             <motion.img
               key={hoveredItem}
@@ -66,7 +66,7 @@ const PhotographyTable: React.FC = () => {
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ 
                 duration: 0.4,
-                ease: [0.4, 0, 0.2, 1], // Custom easing for smoother motion
+                ease: [0.4, 0, 0.2, 1],
                 opacity: { duration: 0.3 }
               }}
               src={carouselItems[hoveredItem].imageUrl}
