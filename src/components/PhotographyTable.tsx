@@ -13,7 +13,16 @@ const PhotographyTable: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-full overflow-y-auto px-4 scrollbar-hide">
+    <div 
+      className="w-full h-full overflow-y-auto px-4 scrollbar-hide" 
+      style={{ 
+        overscrollBehavior: 'contain',
+        touchAction: 'pan-y'
+      }}
+      onWheel={(e) => {
+        e.stopPropagation();
+      }}
+    >
       <table className="w-full">
         <tbody>
           {carouselItems.map((item) => (

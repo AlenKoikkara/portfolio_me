@@ -211,38 +211,60 @@ const PhotographyCarousel: React.FC = () => {
 
   // Handle wheel events from anywhere on the page
   useEffect(() => {
-    let accumulatedScroll = 0;
-    const SCROLL_THRESHOLD = 100;
     let isScrolling = false;
+    let scrollTimeout: NodeJS.Timeout;
+    const SCROLL_THRESHOLD = 50; // Minimum scroll amount to trigger
+    let accumulatedScroll = 0;
 
     const handleWheel = (e: WheelEvent) => {
-      if (containerRef.current && !isScrolling) {
-        e.preventDefault();
-        accumulatedScroll += e.deltaY;
+      e.preventDefault();
+      e.stopPropagation();
 
-        if (Math.abs(accumulatedScroll) >= SCROLL_THRESHOLD) {
-          isScrolling = true;
-          const direction = accumulatedScroll > 0 ? 1 : -1;
-          const newIndex = activeIndex + direction;
+      if (isScrolling) {
+        return;
+      }
 
-          if (newIndex >= 0 && newIndex < carouselItems.length) {
-            setActiveIndex(newIndex);
-          }
-          accumulatedScroll = 0;
+      // Handle both vertical and horizontal scroll
+      const scrollAmount = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      accumulatedScroll += scrollAmount;
 
-          // Reset scrolling flag after animation
-          setTimeout(() => {
-            isScrolling = false;
-          }, 300);
+      // Only trigger if we've accumulated enough scroll
+      if (Math.abs(accumulatedScroll) >= SCROLL_THRESHOLD) {
+        isScrolling = true;
+        const direction = accumulatedScroll > 0 ? 1 : -1;
+        const newIndex = activeIndex + direction;
+
+        if (newIndex >= 0 && newIndex < carouselItems.length) {
+          setActiveIndex(newIndex);
         }
+
+        // Reset accumulated scroll
+        accumulatedScroll = 0;
+
+        // Clear any existing timeout
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+
+        // Reset scrolling flag after animation
+        scrollTimeout = setTimeout(() => {
+          isScrolling = false;
+        }, 800);
       }
     };
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
+    // Only add wheel event listener in carousel view
+    if (!isTableView) {
+      window.addEventListener("wheel", handleWheel, { passive: false });
+    }
+
     return () => {
       window.removeEventListener("wheel", handleWheel);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
     };
-  }, [activeIndex, setActiveIndex]);
+  }, [activeIndex, setActiveIndex, isTableView]);
 
   const handleViewToggle = () => {
     setIsTableView(!isTableView);
@@ -318,10 +340,10 @@ const PhotographyCarousel: React.FC = () => {
             className="w-full h-full"
           >
             {/* Image Carousel */}
-            <div className="flex-1 w-full h-full relative overflow-visible">
+            <div className="flex-1 w-full h-full relative">
               <div
                 ref={containerRef}
-                className="w-full h-full relative overflow-visible"
+                className="w-full h-full relative"
               >
                 <motion.div
                   className="absolute top-0 left-0 h-full flex will-change-transform"
@@ -339,16 +361,17 @@ const PhotographyCarousel: React.FC = () => {
                   animate={{ x }}
                   transition={{
                     type: "spring",
-                    stiffness: 300,
+                    stiffness: 150,
                     damping: 30,
                     mass: 1,
                     velocity: 0,
+                    duration: 0.8
                   }}
                 >
                   {carouselItems.map((item, index) => (
                     <div
                       key={item.id}
-                      className={`w-full h-full flex-shrink-0 flex items-center justify-center snap-start transition-opacity duration-300 ${
+                      className={`w-full h-full flex-shrink-0 flex items-center justify-center snap-center transition-opacity duration-300 ${
                         Math.abs(index - activeIndex) <= 1
                           ? "opacity-100"
                           : "opacity-0"

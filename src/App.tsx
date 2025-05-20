@@ -3,7 +3,8 @@ import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import Blogs from './pages/Blogs';
 import Photography from './pages/Photography';
-import About from './pages/About';
+import AboutPage from './pages/About';
+
 import './App.css';
 import Footer from './components/Footer';
 import BottomBar from './components/BottomBar';
@@ -21,7 +22,7 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/photography" element={<Photography />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
         {isHomePage && (
           <>
