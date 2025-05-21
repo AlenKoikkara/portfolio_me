@@ -17,7 +17,7 @@ const BottomBar: React.FC = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={`title-${activeIndex}`}
-            className="text-[12px] md:text-[20px] text-blackboard-black dark:text-white"
+            className="text-[12px] md:text-[18px] text-blackboard-black dark:text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -30,7 +30,7 @@ const BottomBar: React.FC = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={`desc-${activeIndex}`}
-            className="text-[10px] md:text-[14px] max-w-[800px] text-slate md:mt-2 line-clamp-3 md:line-clamp-none"
+            className="text-[10px] md:text-[12px] max-w-[800px] text-slate md:mt-2 line-clamp-3 md:line-clamp-none"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}

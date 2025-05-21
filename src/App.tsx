@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
@@ -10,7 +11,7 @@ import Blogs from "./pages/Blogs";
 import Photography from "./pages/Photography";
 import AboutPage from "./pages/About";
 import SplashScreen from "./components/SplashScreen";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./App.css";
 import Footer from "./components/Footer";
@@ -19,8 +20,15 @@ import { CarouselProvider } from "./context/CarouselContext";
 
 function AppContent() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  useEffect(() => {
+    if (!isInitialLoad && isHomePage) {
+      navigate("/", { state: { isInitialLoad: false } });
+    }
+  }, [isInitialLoad, isHomePage, navigate]);
 
   return (
     <CarouselProvider>
@@ -29,12 +37,12 @@ function AppContent() {
           <SplashScreen onAnimationComplete={() => setIsInitialLoad(false)} />
         )}
         {!isInitialLoad && (
-          <div className="fixed z-50">
+          <div className="md:fixed z-50">
             <Navigation />
           </div>
         )}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={!isInitialLoad ? <Home /> : null} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/photography" element={<Photography />} />
           <Route path="/about" element={<AboutPage />} />

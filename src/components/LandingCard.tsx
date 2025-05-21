@@ -64,7 +64,7 @@ const LandingCard: React.FC = () => {
             </motion.span>
           </div>
         </div>
-        <div className="px-[30px] text-slate text-[clamp(.9rem,1.3vw,1.3rem)] font-[300] transition-all duration-300">
+        <div className="px-[30px] text-slate text-[clamp(.9rem,1.2vw,1.3rem)] font-[300] transition-all duration-300">
           <motion.span
             initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
