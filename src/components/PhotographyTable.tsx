@@ -33,15 +33,6 @@ const PhotographyTable: React.FC = () => {
               onMouseEnter={() => setHoveredItem(item.id)}
               onMouseLeave={() => setHoveredItem(null)}
             >
-              {/* <td className="py-2 px-1">
-                <div className="w-10 h-10 overflow-hidden rounded">
-                  <img
-                    src={item.imageUrl}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </td> */}
               <td>
                 <p className="text-slate text-[10px] md:text-xs">{item.date}</p>
               </td>
